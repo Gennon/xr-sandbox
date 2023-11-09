@@ -1,0 +1,28 @@
+{
+  "folders": [
+      {
+          "path": "."
+      }
+  ],
+  "settings": {
+      "editor.tabSize": 4,
+      "files.exclude": {
+          "**/.git": true,
+          "**/.svn": true,
+          "**/.hg": true,
+          "**/CVS": true,
+          "**/.DS_Store": true,
+          "**/.godot": true,
+          "**/builds": true,
+      },
+},
+"extensions": {
+    "recommendations": [
+        "vivaxy.vscode-conventional-commits",
+        "ms-dotnettools.csdevkit",
+        "csharpier.csharpier-vscode",
+        "mhutchie.git-graph",
+        "geequlim.godot-tools"
+    ]
+}
+}
