@@ -1,0 +1,12 @@
+# Godot 4+ specific ignores
+.godot/
+android/build/
+
+# Ignore Blender temp files
+*.blend1
+
+# Ignore Builds folder
+[Bb]uilds/
+
+# Ignore Mac files
+.DS_Store
