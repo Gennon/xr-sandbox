@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://doy8lwrpirp4o"]
+
+[ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="1_iww2e"]
+[ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="2_1f6db"]
+[ext_resource type="PackedScene" uid="uid://l2n30mpbkdyw" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_hand_low.tscn" id="3_4rxqc"]
+[ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="3_grh8q"]
+[ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="4_6b71n"]
+[ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="5_8la7u"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mfxym"]
+radius = 0.2
+height = 1.4
+
+[node name="VR-Rig" type="XROrigin3D"]
+
+[node name="XRCamera3D" type="XRCamera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1.8, 2.08165e-12)
+
+[node name="LeftController" type="XRController3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, 0)
+tracker = &"left_hand"
+pose = &"aim"
+
+[node name="LeftHand" parent="LeftController" instance=ExtResource("1_iww2e")]
+
+[node name="MovementDirect" parent="LeftController" instance=ExtResource("2_1f6db")]
+strafe = true
+
+[node name="FunctionPickup" parent="LeftController" instance=ExtResource("3_grh8q")]
+
+[node name="RightController" type="XRController3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 0)
+tracker = &"right_hand"
+pose = &"aim"
+
+[node name="RightHand" parent="RightController" instance=ExtResource("3_4rxqc")]
+
+[node name="MovementDirect" parent="RightController" instance=ExtResource("2_1f6db")]
+
+[node name="MovementTurn" parent="RightController" instance=ExtResource("4_6b71n")]
+
+[node name="FunctionPickup" parent="RightController" instance=ExtResource("3_grh8q")]
+
+[node name="PlayerBody" parent="." instance=ExtResource("5_8la7u")]
+
+[node name="_CollisionShape3D_18161" type="CollisionShape3D" parent="PlayerBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+shape = SubResource("CapsuleShape3D_mfxym")
